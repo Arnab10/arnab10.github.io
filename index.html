@@ -1,984 +1,2207 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arnab Bhattacharya - Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --black: #000;
-            --white: #fff;
-            --accent: #FF3C78;
-            --gray: #1a1a1a;
-            --light-gray: #2a2a2a;
-            --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            cursor: none;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--black);
-            color: var(--white);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* Animated cursor */
-        .cursor {
-            position: fixed;
-            width: 30px;
-            height: 30px;
-            border: 2px solid var(--accent);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-            transition: var(--transition);
-            mix-blend-mode: difference;
-        }
-
-        .cursor-inner {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-            transition: var(--transition);
-        }
-
-        .cursor.hover, .cursor-inner.hover {
-            transform: translate(-50%, -50%) scale(1.5);
-            background-color: var(--white);
-            border-color: var(--white);
-        }
-
-        /* Layout & sections */
-        section {
-            min-height: 100vh;
-            padding: 100px 10%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        /* Header styles */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 25px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
-            transition: var(--transition);
-        }
-
-        header.scrolled {
-            padding: 15px 5%;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.5);
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-            color: var(--white);
-        }
-
-        .logo span {
-            color: var(--accent);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 35px;
-        }
-
-        nav a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            position: relative;
-            padding: 5px 0;
-            transition: var(--transition);
-            font-size: 1.1rem;
-        }
-
-        nav a:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: var(--transition);
-        }
-
-        nav a:hover:after {
-            width: 100%;
-        }
-
-        /* Hero section */
-        #hero {
-            background: radial-gradient(circle at 10% 20%, rgba(30,30,30,0.9) 0%, rgba(0,0,0,0.95) 70%);
-            position: relative;
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-title {
-            font-size: clamp(3rem, 8vw, 5.5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 25px;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUp 1s forwards 0.3s;
-        }
-
-        .hero-title span {
-            color: var(--accent);
-            position: relative;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.3rem, 4vw, 2rem);
-            font-weight: 400;
-            margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUp 1s forwards 0.6s;
-            color: rgba(255,255,255,0.8);
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUp 1s forwards 0.9s;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.2rem;
-            background: rgba(255,255,255,0.05);
-            padding: 12px 25px;
-            border-radius: 50px;
-            transition: var(--transition);
-        }
-
-        .contact-item:hover {
-            background: rgba(255,255,255,0.1);
-            transform: translateY(-3px);
-        }
-
-        /* Section titles */
-        .section-title {
-            font-size: 2.8rem;
-            font-weight: 800;
-            margin-bottom: 70px;
-            position: relative;
-            padding-bottom: 20px;
-        }
-
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100px;
-            height: 5px;
-            background: var(--accent);
-        }
-
-        /* About section */
-        #about {
-            background: linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(0,0,0,0.95) 100%);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-text p {
-            margin-bottom: 25px;
-            font-size: 1.2rem;
-            color: rgba(255,255,255,0.85);
-            line-height: 1.8;
-        }
-
-        .about-highlights {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-            margin-top: 40px;
-        }
-
-        .highlight-card {
-            background: rgba(255,255,255,0.05);
-            padding: 25px;
-            border-radius: 12px;
-            border-left: 4px solid var(--accent);
-            transition: var(--transition);
-        }
-
-        .highlight-card:hover {
-            transform: translateY(-8px);
-            background: rgba(255,255,255,0.08);
-            box-shadow: 0 10px 30px rgba(255,60,120,0.15);
-        }
-
-        .highlight-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 12px;
-            color: var(--accent);
-        }
-
-        /* Skills section */
-        #skills {
-            background: linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(15,15,15,0.95) 100%);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 35px;
-        }
-
-        .skill-category {
-            background: rgba(255,255,255,0.05);
-            padding: 35px;
-            border-radius: 15px;
-            transition: var(--transition);
-        }
-
-        .skill-category:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 15px 40px rgba(255,60,120,0.25);
-        }
-
-        .skill-category h3 {
-            font-size: 1.5rem;
-            margin-bottom: 25px;
-            color: var(--accent);
-        }
-
-        .skill-list {
-            list-style: none;
-        }
-
-        .skill-list li {
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-            font-size: 1.1rem;
-        }
-
-        .skill-list li:before {
-            content: '▹';
-            color: var(--accent);
-            margin-right: 15px;
-            font-size: 1.2rem;
-        }
-
-        /* Experience section */
-        #experience {
-            background: linear-gradient(135deg, rgba(15,15,15,0.95) 0%, rgba(0,0,0,0.95) 100%);
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .timeline:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 5px;
-            background: var(--accent);
-            left: 50%;
-            margin-left: -2.5px;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 60px;
-            width: 50%;
-            padding: 20px 40px;
-        }
-
-        .timeline-item:nth-child(odd) {
-            left: 0;
-        }
-
-        .timeline-item:nth-child(even) {
-            left: 50%;
-        }
-
-        .timeline-content {
-            background: rgba(255,255,255,0.05);
-            padding: 35px;
-            border-radius: 15px;
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .timeline-content:hover {
-            transform: translateY(-8px);
-            background: rgba(255,255,255,0.08);
-            box-shadow: 0 10px 30px rgba(255,60,120,0.15);
-        }
-
-        .timeline-date {
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 12px;
-            font-size: 1.1rem;
-        }
-
-        .timeline-title {
-            font-size: 1.6rem;
-            margin-bottom: 18px;
-        }
-
-        .timeline-desc {
-            margin-bottom: 18px;
-        }
-
-        .timeline-list {
-            padding-left: 25px;
-        }
-
-        .timeline-list li {
-            margin-bottom: 12px;
-            line-height: 1.7;
-        }
-
-        .timeline-item:nth-child(odd):after {
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            background: var(--accent);
-            border-radius: 50%;
-            top: 35px;
-            right: -12px;
-            box-shadow: 0 0 15px rgba(255,60,120,0.5);
-        }
-
-        .timeline-item:nth-child(even):after {
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            background: var(--accent);
-            border-radius: 50%;
-            top: 35px;
-            left: -12px;
-            box-shadow: 0 0 15px rgba(255,60,120,0.5);
-        }
-
-        /* Education Section */
-        #education {
-            background: linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(0,0,0,0.95) 100%);
-        }
-
-        .education-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 40px;
-        }
-
-        .education-card {
-            background: rgba(255,255,255,0.05);
-            padding: 40px;
-            border-radius: 15px;
-            transition: var(--transition);
-            border-top: 4px solid var(--accent);
-        }
-
-        .education-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255,255,255,0.08);
-            box-shadow: 0 15px 40px rgba(255,60,120,0.2);
-        }
-
-        .education-icon {
-            font-size: 3rem;
-            color: var(--accent);
-            margin-bottom: 25px;
-        }
-
-        .education-title {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-
-        .education-subtitle {
-            font-size: 1.3rem;
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 10px;
-        }
-
-        .education-details {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            color: rgba(255,255,255,0.7);
-        }
-
-        /* Awards Section */
-        #awards {
-            background: linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(15,15,15,0.95) 100%);
-        }
-
-        .awards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 35px;
-        }
-
-        .award-card {
-            background: rgba(255,255,255,0.05);
-            padding: 35px;
-            border-radius: 15px;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .award-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: var(--accent);
-        }
-
-        .award-card:hover {
-            transform: translateY(-8px);
-            background: rgba(255,255,255,0.08);
-            box-shadow: 0 10px 30px rgba(255,60,120,0.15);
-        }
-
-        .award-icon {
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: 20px;
-        }
-
-        .award-title {
-            font-size: 1.6rem;
-            margin-bottom: 15px;
-        }
-
-        .award-issuer {
-            font-size: 1.2rem;
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 10px;
-        }
-
-        .award-date {
-            font-size: 1.1rem;
-            color: rgba(255,255,255,0.7);
-            font-weight: 500;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 50px 5%;
-            background: rgba(0,0,0,0.95);
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .footer-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .footer-logo {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-        }
-
-        .footer-logo span {
-            color: var(--accent);
-        }
-
-        .copyright {
-            font-size: 1.1rem;
-            color: rgba(255,255,255,0.7);
-            margin-top: 30px;
-        }
-
-        /* Animations */
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .animate-on-scroll.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive design */
-        @media (max-width: 1100px) {
-            section {
-                padding: 80px 7%;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .timeline:before {
-                left: 30px;
-            }
-            
-            .timeline-item {
-                width: 100%;
-                padding-left: 80px;
-                padding-right: 0;
-            }
-            
-            .timeline-item:nth-child(even) {
-                left: 0;
-            }
-            
-            .timeline-item:nth-child(odd):after, 
-            .timeline-item:nth-child(even):after {
-                left: 25px;
-                top: 35px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            section {
-                padding: 100px 5%;
-            }
-            
-            nav ul {
-                display: none;
-            }
-            
-            .about-highlights {
-                grid-template-columns: 1fr;
-            }
-            
-            .skills-grid, .education-container, .awards-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .contact-item {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-    </style>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Arnab Bhattacharya - Software Engineer & AI Researcher</title>
+
+<style>
+
+* {
+
+margin: 0;
+
+padding: 0;
+
+box-sizing: border-box;
+
+}
+
+  
+
+:root {
+
+--bg-primary: #000000;
+
+--bg-secondary: #1a1a1a;
+
+--text-primary: #ffffff;
+
+--text-secondary: #a0a0a0;
+
+--accent: #0071e3;
+
+--accent-hover: #0077ed;
+
+--glass-bg: rgba(255, 255, 255, 0.05);
+
+--glass-border: rgba(255, 255, 255, 0.1);
+
+}
+
+  
+
+[data-theme="light"] {
+
+--bg-primary: #f5f5f7;
+
+--bg-secondary: #ffffff;
+
+--text-primary: #1d1d1f;
+
+--text-secondary: #6e6e73;
+
+--accent: #0071e3;
+
+--accent-hover: #0077ed;
+
+--glass-bg: rgba(255, 255, 255, 0.7);
+
+--glass-border: rgba(0, 0, 0, 0.1);
+
+}
+
+  
+
+body {
+
+font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+
+background: var(--bg-primary);
+
+color: var(--text-primary);
+
+line-height: 1.6;
+
+overflow-x: hidden;
+
+transition: background 0.5s ease, color 0.5s ease;
+
+}
+
+  
+
+/* Animated Background */
+
+.bg-animation {
+
+position: fixed;
+
+top: 0;
+
+left: 0;
+
+width: 100%;
+
+height: 100%;
+
+z-index: -1;
+
+overflow: hidden;
+
+}
+
+  
+
+.blob {
+
+position: absolute;
+
+border-radius: 50%;
+
+filter: blur(80px);
+
+opacity: 0.5;
+
+animation: float 20s infinite ease-in-out;
+
+}
+
+  
+
+.blob1 {
+
+width: 500px;
+
+height: 500px;
+
+background: linear-gradient(45deg, #0071e3, #00c7be);
+
+top: -250px;
+
+left: -250px;
+
+animation: float 25s infinite ease-in-out;
+
+}
+
+  
+
+.blob2 {
+
+width: 400px;
+
+height: 400px;
+
+background: linear-gradient(45deg, #af52de, #ff2d55);
+
+top: 50%;
+
+right: -200px;
+
+animation: float 30s infinite ease-in-out reverse;
+
+}
+
+  
+
+.blob3 {
+
+width: 450px;
+
+height: 450px;
+
+background: linear-gradient(45deg, #30d158, #ffd60a);
+
+bottom: -225px;
+
+left: 50%;
+
+animation: float 35s infinite ease-in-out;
+
+}
+
+  
+
+@keyframes float {
+
+0% {
+
+transform: translate(0, 0) rotate(0deg) scale(1);
+
+}
+
+25% {
+
+transform: translate(100px, 100px) rotate(90deg) scale(1.1);
+
+}
+
+50% {
+
+transform: translate(200px, -50px) rotate(180deg) scale(0.9);
+
+}
+
+75% {
+
+transform: translate(-100px, 150px) rotate(270deg) scale(1.05);
+
+}
+
+100% {
+
+transform: translate(0, 0) rotate(360deg) scale(1);
+
+}
+
+}
+
+  
+
+/* Navigation */
+
+nav {
+
+position: fixed;
+
+top: 0;
+
+width: 100%;
+
+z-index: 1000;
+
+backdrop-filter: blur(30px) saturate(180%);
+
+-webkit-backdrop-filter: blur(30px) saturate(180%);
+
+background: rgba(255, 255, 255, 0.08);
+
+border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+
+transition: all 0.3s ease;
+
+}
+
+  
+
+[data-theme="light"] nav {
+
+background: rgba(255, 255, 255, 0.72);
+
+border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+}
+
+  
+
+nav .container {
+
+max-width: 1200px;
+
+margin: 0 auto;
+
+padding: 1rem 2rem;
+
+display: flex;
+
+justify-content: space-between;
+
+align-items: center;
+
+}
+
+  
+
+nav .logo {
+
+font-size: 1.5rem;
+
+font-weight: 600;
+
+letter-spacing: -0.5px;
+
+}
+
+  
+
+nav ul {
+
+display: flex;
+
+list-style: none;
+
+gap: 2rem;
+
+align-items: center;
+
+}
+
+  
+
+nav a {
+
+color: var(--text-primary);
+
+text-decoration: none;
+
+font-size: 0.95rem;
+
+transition: color 0.3s ease;
+
+font-weight: 400;
+
+}
+
+  
+
+nav a:hover {
+
+color: var(--accent);
+
+}
+
+  
+
+.theme-toggle {
+
+background: var(--glass-bg);
+
+border: 1px solid var(--glass-border);
+
+padding: 0.5rem 1rem;
+
+border-radius: 20px;
+
+cursor: pointer;
+
+transition: all 0.3s ease;
+
+font-size: 0.9rem;
+
+color: var(--text-primary);
+
+}
+
+  
+
+.theme-toggle:hover {
+
+background: var(--accent);
+
+color: white;
+
+}
+
+  
+
+/* Hero Section */
+
+.hero {
+
+min-height: 100vh;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+text-align: center;
+
+padding: 0 2rem;
+
+opacity: 0;
+
+animation: fadeIn 1s ease forwards;
+
+}
+
+  
+
+@keyframes fadeIn {
+
+to { opacity: 1; }
+
+}
+
+  
+
+.hero h1 {
+
+font-size: clamp(3rem, 8vw, 6rem);
+
+font-weight: 700;
+
+letter-spacing: -2px;
+
+margin-bottom: 1rem;
+
+background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+
+-webkit-background-clip: text;
+
+-webkit-text-fill-color: transparent;
+
+background-clip: text;
+
+}
+
+  
+
+.hero .subtitle {
+
+font-size: clamp(1.2rem, 3vw, 1.8rem);
+
+color: var(--text-secondary);
+
+margin-bottom: 2rem;
+
+font-weight: 300;
+
+}
+
+  
+
+.hero .tagline {
+
+font-size: 1.1rem;
+
+color: var(--accent);
+
+margin-bottom: 3rem;
+
+}
+
+  
+
+.cta-buttons {
+
+display: flex;
+
+gap: 1rem;
+
+justify-content: center;
+
+flex-wrap: wrap;
+
+}
+
+  
+
+.btn {
+
+padding: 1rem 2rem;
+
+border-radius: 25px;
+
+text-decoration: none;
+
+font-weight: 500;
+
+transition: all 0.3s ease;
+
+font-size: 1rem;
+
+}
+
+  
+
+.btn-primary {
+
+background: var(--accent);
+
+color: white;
+
+border: none;
+
+}
+
+  
+
+.btn-primary:hover {
+
+background: var(--accent-hover);
+
+transform: translateY(-2px);
+
+box-shadow: 0 10px 30px rgba(0, 113, 227, 0.3);
+
+}
+
+  
+
+.btn-secondary {
+
+background: var(--glass-bg);
+
+color: var(--text-primary);
+
+border: 1px solid var(--glass-border);
+
+backdrop-filter: blur(10px);
+
+}
+
+  
+
+.btn-secondary:hover {
+
+background: var(--glass-border);
+
+transform: translateY(-2px);
+
+}
+
+  
+
+/* Section Styles */
+
+section {
+
+padding: 6rem 2rem;
+
+max-width: 1200px;
+
+margin: 0 auto;
+
+opacity: 0;
+
+transform: translateY(50px);
+
+transition: all 0.8s ease;
+
+}
+
+  
+
+section.visible {
+
+opacity: 1;
+
+transform: translateY(0);
+
+}
+
+  
+
+.section-title {
+
+font-size: clamp(2.5rem, 5vw, 4rem);
+
+font-weight: 700;
+
+margin-bottom: 3rem;
+
+letter-spacing: -1px;
+
+text-align: center;
+
+}
+
+  
+
+/* Cards */
+
+.card {
+
+background: var(--glass-bg);
+
+backdrop-filter: blur(20px);
+
+border: 1px solid var(--glass-border);
+
+border-radius: 20px;
+
+padding: 2rem;
+
+margin-bottom: 2rem;
+
+transition: all 0.3s ease;
+
+}
+
+  
+
+.card:hover {
+
+transform: translateY(-5px);
+
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+
+}
+
+  
+
+.card h3 {
+
+font-size: 1.8rem;
+
+margin-bottom: 0.5rem;
+
+color: var(--accent);
+
+}
+
+  
+
+.card .company {
+
+font-size: 1.3rem;
+
+margin-bottom: 0.5rem;
+
+font-weight: 600;
+
+}
+
+  
+
+.card .duration {
+
+color: var(--text-secondary);
+
+margin-bottom: 1rem;
+
+font-size: 0.95rem;
+
+}
+
+  
+
+.card ul {
+
+list-style: none;
+
+padding-left: 0;
+
+}
+
+  
+
+.card li {
+
+margin-bottom: 0.8rem;
+
+padding-left: 1.5rem;
+
+position: relative;
+
+color: var(--text-secondary);
+
+}
+
+  
+
+.card li:before {
+
+content: "▹";
+
+position: absolute;
+
+left: 0;
+
+color: var(--accent);
+
+font-weight: bold;
+
+}
+
+  
+
+/* Timeline Styles */
+
+.timeline {
+
+position: relative;
+
+max-width: 1200px;
+
+margin: 0 auto;
+
+padding: 2rem 0;
+
+}
+
+  
+
+.timeline::before {
+
+content: '';
+
+position: absolute;
+
+left: 50%;
+
+transform: translateX(-50%);
+
+width: 4px;
+
+height: 100%;
+
+background: linear-gradient(180deg, var(--accent), rgba(0, 113, 227, 0.3));
+
+border-radius: 2px;
+
+}
+
+  
+
+.timeline-item {
+
+position: relative;
+
+margin-bottom: 4rem;
+
+opacity: 0;
+
+transform: translateY(50px);
+
+transition: all 0.8s ease;
+
+}
+
+  
+
+.timeline-item.visible {
+
+opacity: 1;
+
+transform: translateY(0);
+
+}
+
+  
+
+.timeline-item:nth-child(odd) {
+
+padding-right: 55%;
+
+}
+
+  
+
+.timeline-item:nth-child(even) {
+
+padding-left: 55%;
+
+text-align: left;
+
+}
+
+  
+
+.timeline-content {
+
+background: var(--glass-bg);
+
+backdrop-filter: blur(20px);
+
+border: 1px solid var(--glass-border);
+
+border-radius: 20px;
+
+padding: 2rem;
+
+position: relative;
+
+transition: all 0.3s ease;
+
+}
+
+  
+
+.timeline-content:hover {
+
+transform: translateY(-10px);
+
+box-shadow: 0 20px 40px rgba(0, 113, 227, 0.2);
+
+border-color: var(--accent);
+
+}
+
+  
+
+.timeline-dot {
+
+position: absolute;
+
+left: 50%;
+
+transform: translateX(-50%);
+
+width: 20px;
+
+height: 20px;
+
+background: var(--accent);
+
+border: 4px solid var(--bg-primary);
+
+border-radius: 50%;
+
+top: 2rem;
+
+z-index: 10;
+
+box-shadow: 0 0 20px rgba(0, 113, 227, 0.5);
+
+animation: pulse 2s infinite;
+
+}
+
+  
+
+@keyframes pulse {
+
+0%, 100% {
+
+box-shadow: 0 0 20px rgba(0, 113, 227, 0.5);
+
+}
+
+50% {
+
+box-shadow: 0 0 30px rgba(0, 113, 227, 0.8);
+
+}
+
+}
+
+  
+
+.timeline-item:nth-child(odd) .timeline-content::before {
+
+content: '';
+
+position: absolute;
+
+right: -20px;
+
+top: 2rem;
+
+width: 0;
+
+height: 0;
+
+border-top: 10px solid transparent;
+
+border-bottom: 10px solid transparent;
+
+border-left: 20px solid var(--glass-border);
+
+}
+
+  
+
+.timeline-item:nth-child(odd) .timeline-content::after {
+
+content: '';
+
+position: absolute;
+
+right: -19px;
+
+top: 2rem;
+
+width: 0;
+
+height: 0;
+
+border-top: 10px solid transparent;
+
+border-bottom: 10px solid transparent;
+
+border-left: 20px solid var(--glass-bg);
+
+}
+
+  
+
+.timeline-item:nth-child(even) .timeline-content::before {
+
+content: '';
+
+position: absolute;
+
+left: -20px;
+
+top: 2rem;
+
+width: 0;
+
+height: 0;
+
+border-top: 10px solid transparent;
+
+border-bottom: 10px solid transparent;
+
+border-right: 20px solid var(--glass-border);
+
+}
+
+  
+
+.timeline-item:nth-child(even) .timeline-content::after {
+
+content: '';
+
+position: absolute;
+
+left: -19px;
+
+top: 2rem;
+
+width: 0;
+
+height: 0;
+
+border-top: 10px solid transparent;
+
+border-bottom: 10px solid transparent;
+
+border-right: 20px solid var(--glass-bg);
+
+}
+
+  
+
+.timeline-content h3 {
+
+font-size: 1.8rem;
+
+margin-bottom: 0.5rem;
+
+color: var(--accent);
+
+}
+
+  
+
+.timeline-content .company {
+
+font-size: 1.4rem;
+
+margin-bottom: 0.5rem;
+
+font-weight: 600;
+
+display: flex;
+
+align-items: center;
+
+gap: 0.5rem;
+
+}
+
+  
+
+.timeline-content .company-logo {
+
+font-size: 1.8rem;
+
+}
+
+  
+
+.timeline-content .duration {
+
+color: var(--text-secondary);
+
+margin-bottom: 1.5rem;
+
+font-size: 0.95rem;
+
+display: inline-block;
+
+background: var(--bg-secondary);
+
+padding: 0.3rem 0.8rem;
+
+border-radius: 15px;
+
+border: 1px solid var(--glass-border);
+
+}
+
+  
+
+.timeline-content ul {
+
+list-style: none;
+
+padding-left: 0;
+
+}
+
+  
+
+.timeline-content li {
+
+margin-bottom: 0.8rem;
+
+padding-left: 1.5rem;
+
+position: relative;
+
+color: var(--text-secondary);
+
+line-height: 1.6;
+
+}
+
+  
+
+.timeline-content li:before {
+
+content: "▹";
+
+position: absolute;
+
+left: 0;
+
+color: var(--accent);
+
+font-weight: bold;
+
+}
+
+  
+
+@media (max-width: 768px) {
+
+.timeline::before {
+
+left: 30px;
+
+}
+
+  
+
+.timeline-item:nth-child(odd),
+
+.timeline-item:nth-child(even) {
+
+padding-left: 80px;
+
+padding-right: 0;
+
+text-align: left;
+
+}
+
+  
+
+.timeline-dot {
+
+left: 30px;
+
+}
+
+  
+
+.timeline-item:nth-child(odd) .timeline-content::before,
+
+.timeline-item:nth-child(odd) .timeline-content::after {
+
+right: auto;
+
+left: -20px;
+
+border-left: none;
+
+border-right: 20px solid var(--glass-border);
+
+}
+
+  
+
+.timeline-item:nth-child(odd) .timeline-content::after {
+
+left: -19px;
+
+border-right: 20px solid var(--glass-bg);
+
+}
+
+}
+
+  
+
+/* Education */
+
+.education-grid {
+
+display: grid;
+
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+gap: 2rem;
+
+}
+
+  
+
+.education-card {
+
+background: var(--glass-bg);
+
+backdrop-filter: blur(20px);
+
+border: 1px solid var(--glass-border);
+
+border-radius: 20px;
+
+padding: 2rem;
+
+text-align: center;
+
+transition: all 0.3s ease;
+
+}
+
+  
+
+.education-card:hover {
+
+transform: translateY(-10px);
+
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+
+}
+
+  
+
+.education-card h3 {
+
+color: var(--accent);
+
+margin-bottom: 1rem;
+
+font-size: 1.5rem;
+
+}
+
+  
+
+.education-card .school {
+
+font-weight: 600;
+
+margin-bottom: 0.5rem;
+
+}
+
+  
+
+.education-card .score {
+
+color: var(--text-secondary);
+
+font-size: 0.95rem;
+
+}
+
+  
+
+/* Skills */
+
+.skills-grid {
+
+display: grid;
+
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+gap: 1.5rem;
+
+}
+
+  
+
+.skill-category {
+
+background: var(--glass-bg);
+
+backdrop-filter: blur(20px);
+
+border: 1px solid var(--glass-border);
+
+border-radius: 15px;
+
+padding: 1.5rem;
+
+}
+
+  
+
+.skill-category h4 {
+
+color: var(--accent);
+
+margin-bottom: 1rem;
+
+font-size: 1.2rem;
+
+}
+
+  
+
+.skill-tags {
+
+display: flex;
+
+flex-wrap: wrap;
+
+gap: 0.5rem;
+
+}
+
+  
+
+.skill-tag {
+
+background: var(--bg-secondary);
+
+padding: 0.5rem 1rem;
+
+border-radius: 20px;
+
+font-size: 0.9rem;
+
+color: var(--text-secondary);
+
+border: 1px solid var(--glass-border);
+
+}
+
+  
+
+/* Awards */
+
+.awards-list {
+
+display: grid;
+
+gap: 1.5rem;
+
+}
+
+  
+
+.award-item {
+
+background: var(--glass-bg);
+
+backdrop-filter: blur(20px);
+
+border: 1px solid var(--glass-border);
+
+border-radius: 15px;
+
+padding: 1.5rem;
+
+display: flex;
+
+align-items: center;
+
+gap: 1rem;
+
+}
+
+  
+
+.award-icon {
+
+font-size: 2rem;
+
+}
+
+  
+
+.award-content h4 {
+
+color: var(--accent);
+
+margin-bottom: 0.3rem;
+
+}
+
+  
+
+.award-content p {
+
+color: var(--text-secondary);
+
+font-size: 0.95rem;
+
+}
+
+  
+
+/* Contact */
+
+.contact-info {
+
+text-align: center;
+
+font-size: 1.2rem;
+
+}
+
+  
+
+.contact-info a {
+
+color: var(--accent);
+
+text-decoration: none;
+
+transition: color 0.3s ease;
+
+}
+
+  
+
+.contact-info a:hover {
+
+color: var(--accent-hover);
+
+text-decoration: underline;
+
+}
+
+  
+
+/* Footer */
+
+footer {
+
+text-align: center;
+
+padding: 2rem;
+
+color: var(--text-secondary);
+
+border-top: 1px solid var(--glass-border);
+
+backdrop-filter: blur(20px);
+
+background: var(--glass-bg);
+
+}
+
+  
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+nav ul {
+
+display: none;
+
+}
+
+  
+
+.hero h1 {
+
+font-size: 3rem;
+
+}
+
+  
+
+section {
+
+padding: 4rem 1.5rem;
+
+}
+
+}
+
+  
+
+/* Thesis Section */
+
+.thesis-section {
+
+background: var(--glass-bg);
+
+backdrop-filter: blur(20px);
+
+border: 1px solid var(--glass-border);
+
+border-radius: 20px;
+
+padding: 3rem;
+
+margin: 3rem 0;
+
+}
+
+  
+
+.thesis-section h3 {
+
+color: var(--accent);
+
+font-size: 2rem;
+
+margin-bottom: 1.5rem;
+
+}
+
+  
+
+.thesis-section p {
+
+color: var(--text-secondary);
+
+line-height: 1.8;
+
+text-align: justify;
+
+}
+
+</style>
+
 </head>
+
 <body>
-    <!-- Animated Cursor -->
-    <div class="cursor"></div>
-    <div class="cursor-inner"></div>
 
-    <!-- Header -->
-    <header>
-        <div class="logo">Arnab<span>.</span></div>
-        <nav>
-            <ul>
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#awards">Awards</a></li>
-            </ul>
-        </nav>
-    </header>
+<div class="bg-animation">
 
-    <!-- Hero Section -->
-    <section id="hero">
-        <div class="container hero-content">
-            <h1 class="hero-title">Arnab <span>Bhattacharya</span></h1>
-            <p class="hero-subtitle">Software Engineer & Problem Solver</p>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>arnabhattacharya10@gmail.com</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <span>(+91) 6289402839</span>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="blob blob1"></div>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>An energetic, ambitious problem solver who has developed a mature and responsible approach to any undertaking task. With more than 5 years of experience in software engineering, I show excellence in working with collaborators to achieve objectives on time and with accuracy.</p>
-                    <p>My expertise spans backend development, cloud technologies, and system optimization, with a track record of improving system efficiency by up to 60%.</p>
-                </div>
-                <div class="about-highlights">
-                    <div class="highlight-card animate-on-scroll">
-                        <h3>5+ Years</h3>
-                        <p>Professional experience in software engineering</p>
-                    </div>
-                    <div class="highlight-card animate-on-scroll">
-                        <h3>60% Improvement</h3>
-                        <p>In system efficiency through optimization</p>
-                    </div>
-                    <div class="highlight-card animate-on-scroll">
-                        <h3>Problem Solver</h3>
-                        <p>Proven ability to tackle complex challenges</p>
-                    </div>
-                    <div class="highlight-card animate-on-scroll">
-                        <h3>Team Player</h3>
-                        <p>Excellent collaborator and communicator</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="blob blob2"></div>
 
-    <!-- Skills Section -->
-    <section id="skills">
-        <div class="container">
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category animate-on-scroll">
-                    <h3>Backend Technologies</h3>
-                    <ul class="skill-list">
-                        <li>Spring Boot (Java SE 8)</li>
-                        <li>Spring Cloud</li>
-                        <li>Stream Processing with Tibco EMS</li>
-                        <li>Microservice Architecture</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category animate-on-scroll">
-                    <h3>DevOps & Cloud</h3>
-                    <ul class="skill-list">
-                        <li>Docker/Kubernetes</li>
-                        <li>CI/CD - Jenkins, Spinnaker</li>
-                        <li>Cloud Infrastructure</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category animate-on-scroll">
-                    <h3>Databases</h3>
-                    <ul class="skill-list">
-                        <li>MySQL</li>
-                        <li>Oracle DB</li>
-                        <li>Database Design</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category animate-on-scroll">
-                    <h3>Frontend & Languages</h3>
-                    <ul class="skill-list">
-                        <li>React.js</li>
-                        <li>JavaScript (ES8)</li>
-                        <li>Python</li>
-                        <li>C++</li>
-                        <li>JSP</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="blob blob3"></div>
 
-    <!-- Experience Section -->
-    <section id="experience">
-        <div class="container">
-            <h2 class="section-title">Work Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item animate-on-scroll">
-                    <div class="timeline-content">
-                        <div class="timeline-date">Apr 2023 - Present</div>
-                        <h3 class="timeline-title">Software Engineer at ServiceNow</h3>
-                        <div class="timeline-desc">
-                            <ul class="timeline-list">
-                                <li>Collaborated with Product Manager to gather and analyze requirements</li>
-                                <li>Building and developing application in ServiceNow platform</li>
-                                <li>Worked closely with QE to resolve defects and support production issues</li>
-                                <li>Improved system efficiency and scalability by 60% through code refactoring</li>
-                                <li>Integrated async processing to reduce execution time</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="timeline-item animate-on-scroll">
-                    <div class="timeline-content">
-                        <div class="timeline-date">Dec 2021 - Apr 2023</div>
-                        <h3 class="timeline-title">Software Engineer 2 at Oracle Cerner</h3>
-                        <div class="timeline-desc">
-                            <ul class="timeline-list">
-                                <li>Created Event-driven Microservice architecture with Spring Cloud</li>
-                                <li>Asynchronous Stream Processing using Spring Cloud Stream with Tibco EMS</li>
-                                <li>Created UI using React.js for organizational internal use</li>
-                                <li>Implemented CI/CD pipeline using Jenkins and Spinnaker</li>
-                                <li>Conducted performance testing and monitoring</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="timeline-item animate-on-scroll">
-                    <div class="timeline-content">
-                        <div class="timeline-date">July 2019 - Dec 2021</div>
-                        <h3 class="timeline-title">Software Developer at TATA CONSULTANCY SERVICES</h3>
-                        <div class="timeline-desc">
-                            <ul class="timeline-list">
-                                <li>Contributed in developing Insurance web portal using Spring MVC</li>
-                                <li>Fixed defects in the backend Rules Engine</li>
-                                <li>Added new features as per client requirements</li>
-                                <li>Supported go-live of application and resolved client issues</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+</div>
 
-    <!-- Education Section -->
-    <section id="education">
-        <div class="container">
-            <h2 class="section-title">Education</h2>
-            <div class="education-container">
-                <div class="education-card animate-on-scroll">
-                    <div class="education-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3 class="education-title">M.Tech in Artificial Intelligence</h3>
-                    <div class="education-subtitle">Indian Institute of Technology, Patna</div>
-                    <div class="education-details">2024 - 2026</div>
-                    <div class="education-details">Currently pursuing</div>
-                </div>
-                
-                <div class="education-card animate-on-scroll">
-                    <div class="education-icon">
-                        <i class="fas fa-university"></i>
-                    </div>
-                    <h3 class="education-title">B.Tech in Electronics & Communication</h3>
-                    <div class="education-subtitle">Institute of Engineering & Management, Saltlake</div>
-                    <div class="education-details">2015 - 2019</div>
-                    <div class="education-details">CGPA: 8.15/10</div>
-                </div>
-                
-                <div class="education-card animate-on-scroll">
-                    <div class="education-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3 class="education-title">Data Analytics Internship</h3>
-                    <div class="education-subtitle">Central Drug Research Institute (CSIR-CDRI)</div>
-                    <div class="education-details">Jan 2019 - May 2019</div>
-                    <div class="education-details">Patent analysis and recommendation systems</div>
-                </div>
-            </div>
-        </div>
-    </section>
+  
 
-    <!-- Awards Section -->
-    <section id="awards">
-        <div class="container">
-            <h2 class="section-title">Awards & Recognition</h2>
-            <div class="awards-container">
-                <div class="award-card animate-on-scroll">
-                    <div class="award-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <h3 class="award-title">LLAMA Award</h3>
-                    <div class="award-issuer">ServiceNow</div>
-                    <div class="award-date">Q1 2024</div>
-                    <p>Awarded for being the best employee in Q1 2024</p>
-                </div>
-                
-                <div class="award-card animate-on-scroll">
-                    <div class="award-icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <h3 class="award-title">On the Spot Award</h3>
-                    <div class="award-issuer">Tata Consultancy Services</div>
-                    <div class="award-date">Dec 2020</div>
-                    <p>Recognized for outstanding performance and contributions</p>
-                </div>
-                
-                <div class="award-card animate-on-scroll">
-                    <div class="award-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3 class="award-title">Hi-Talent Identification</h3>
-                    <div class="award-issuer">Tata Consultancy Services</div>
-                    <div class="award-date">2021</div>
-                    <p>Identified as high-potential talent and awarded early promotion</p>
-                </div>
-                
-                <div class="award-card animate-on-scroll">
-                    <div class="award-icon">
-                        <i class="fas fa-medal"></i>
-                    </div>
-                    <h3 class="award-title">Client Appreciation</h3>
-                    <div class="award-issuer">TCS Client</div>
-                    <div class="award-date">2021</div>
-                    <p>Received appreciation letter for outstanding work during go-live phase</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<nav id="navbar">
 
-    <!-- Footer -->
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-logo">Arnab<span>.</span></div>
-            <p>Software Engineer & Problem Solver with a passion for creating efficient, scalable solutions</p>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>arnabhattacharya10@gmail.com</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <span>(+91) 6289402839</span>
-                </div>
-            </div>
-            <p class="copyright">&copy; 2024 Arnab Bhattacharya. All rights reserved.</p>
-        </div>
-    </footer>
+<div class="container">
 
-    <script>
-        // Animated Cursor
-        const cursor = document.querySelector('.cursor');
-        const cursorInner = document.querySelector('.cursor-inner');
-        
-        document.addEventListener('mousemove', e => {
-            cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-            cursorInner.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-        });
-        
-        // Hover effect for links and buttons
-        const hoverElements = document.querySelectorAll('a, button, .highlight-card, .skill-category, .timeline-content, .education-card, .award-card');
-        
-        hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.classList.add('hover');
-                cursorInner.classList.add('hover');
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.classList.remove('hover');
-                cursorInner.classList.remove('hover');
-            });
-        });
-        
-        // Header scroll effect
-        const header = document.querySelector('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-        
-        // Scroll animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-        
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-            observer.observe(el);
-        });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+<div class="logo">Arnab Bhattacharya</div>
+
+<ul>
+
+<li><a href="#about">About</a></li>
+
+<li><a href="#experience">Experience</a></li>
+
+<li><a href="#education">Education</a></li>
+
+<li><a href="#research">Research</a></li>
+
+<li><a href="#skills">Skills</a></li>
+
+<li><a href="#awards">Awards</a></li>
+
+<li><a href="#contact">Contact</a></li>
+
+</ul>
+
+<button class="theme-toggle" onclick="toggleTheme()">🌓 Theme</button>
+
+</div>
+
+</nav>
+
+  
+
+<section class="hero">
+
+<div>
+
+<h1>Arnab Bhattacharya</h1>
+
+<p class="subtitle">Senior Software Engineer & AI Researcher</p>
+
+<p class="tagline">Building scalable systems & advancing Transformer architectures</p>
+
+<div class="cta-buttons">
+
+<a href="#experience" class="btn btn-primary">View My Work</a>
+
+<a href="#contact" class="btn btn-secondary">Get in Touch</a>
+
+</div>
+
+</div>
+
+</section>
+
+  
+
+<section id="about">
+
+<h2 class="section-title">About Me</h2>
+
+<div class="card">
+
+<p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary);">
+
+I'm a passionate software engineer with 5+ years of experience building high-performance, scalable applications across TCS, Oracle Cerner, and ServiceNow. Currently pursuing M.Tech in AI & Data Science Engineering from IIT Patna, where I'm researching Transformer architectures and attention mechanisms. I specialize in microservices, performance optimization, and cutting-edge AI research.
+
+</p>
+
+</div>
+
+</section>
+
+  
+
+<section id="experience">
+
+<h2 class="section-title">Professional Experience</h2>
+
+<div class="timeline">
+
+<div class="timeline-item">
+
+<div class="timeline-dot"></div>
+
+<div class="timeline-content">
+
+<h3>Senior Software Engineer</h3>
+
+<p class="company">
+
+<span class="company-logo">🚀</span>
+
+ServiceNow
+
+</p>
+
+<span class="duration">April 2023 - Present</span>
+
+<ul>
+
+<li>Complete ownership of ITOM licensing store application using JavaScript</li>
+
+<li>Achieved 63% scalability improvement through custom asynchronous framework using message queue</li>
+
+<li>Reduced memory footprint from 1800 MB to 700 MB (61% reduction)</li>
+
+<li>Developed certificate management store and external issuer in Go for Kubernetes TLS certificate management</li>
+
+<li>Implemented AI agents for certificate renewal using ServiceNow's agentic AI framework</li>
+
+<li>Built Kubernetes visibility agent using JavaScript, Go, and Java</li>
+
+<li>Worked on 4 store applications simultaneously</li>
+
+</ul>
+
+</div>
+
+</div>
+
+  
+
+<div class="timeline-item">
+
+<div class="timeline-dot"></div>
+
+<div class="timeline-content">
+
+<h3>Software Engineer 2</h3>
+
+<p class="company">
+
+<span class="company-logo">☁️</span>
+
+Oracle Cerner
+
+</p>
+
+<span class="duration">December 2021 - April 2023</span>
+
+<ul>
+
+<li>Built microservices using Java Spring Cloud, Spring Reactive, and concurrent programming</li>
+
+<li>Deployed applications on Kubernetes with Docker containerization</li>
+
+<li>Created custom API performance testing tool from scratch replacing Vegeta</li>
+
+<li>Implemented event-driven architecture with Spring Cloud Stream and Tibco EMS</li>
+
+<li>Developed React JS UI for transaction logging and monitoring</li>
+
+<li>Performance optimization using JMeter, JConsole, New Relic, and Grafana</li>
+
+<li>Managed CI/CD pipelines with Jenkins and Spinnaker</li>
+
+</ul>
+
+</div>
+
+</div>
+
+  
+
+<div class="timeline-item">
+
+<div class="timeline-dot"></div>
+
+<div class="timeline-content">
+
+<h3>System Engineer</h3>
+
+<p class="company">
+
+<span class="company-logo">💼</span>
+
+Tata Consultancy Services (TCS)
+
+</p>
+
+<span class="duration">2019 - December 2021</span>
+
+<ul>
+
+<li>Worked on BaNCS insurance portal (TCS proprietary product)</li>
+
+<li>Developed using HTML, JSP, JavaScript, and Java</li>
+
+<li>Created complex stored procedures in Oracle DB for policy lifecycle logic</li>
+
+<li>Built REST APIs for BaNCS integration with external applications</li>
+
+<li>Identified as Hi-Talent and awarded early promotion</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+  
+
+<section id="education">
+
+<h2 class="section-title">Education</h2>
+
+<div class="education-grid">
+
+<div class="education-card">
+
+<h3>M.Tech in AI & DSE</h3>
+
+<p class="school">IIT Patna</p>
+
+<p class="duration">2024 - Present</p>
+
+<p class="score">Currently working on thesis research</p>
+
+</div>
+
+  
+
+<div class="education-card">
+
+<h3>B.Tech in ECE</h3>
+
+<p class="school">IEM, Saltlake</p>
+
+<p class="duration">2015 - 2019</p>
+
+<p class="score">CGPA: 8.2</p>
+
+</div>
+
+  
+
+<div class="education-card">
+
+<h3>Class 12th (CBSE)</h3>
+
+<p class="school">BDM International School</p>
+
+<p class="duration">2015</p>
+
+<p class="score">90% | School Topper in Mathematics (95/100)</p>
+
+</div>
+
+  
+
+<div class="education-card">
+
+<h3>Class 10th (CBSE)</h3>
+
+<p class="school">BDM International School</p>
+
+<p class="duration">2013</p>
+
+<p class="score">CGPA: 9.6</p>
+
+</div>
+
+</div>
+
+</section>
+
+  
+
+<section id="research">
+
+<h2 class="section-title">Research</h2>
+
+<div class="thesis-section">
+
+<h3>M.Tech Thesis: Variance-Adaptive Scaling for Transformer Attention Mechanisms</h3>
+
+<p class="duration" style="color: var(--accent); margin-bottom: 1.5rem; font-size: 1rem;">
+
+IIT Patna | 2024 - Present | Potential Future Publication
+
+</p>
+
+<h4 style="color: var(--text-primary); font-size: 1.3rem; margin-top: 2rem; margin-bottom: 1rem;">Abstract</h4>
+
+<p style="margin-bottom: 1.5rem;">
+
+Transformer-based models have achieved state-of-the-art performance across diverse natural language processing tasks. However, their attention mechanism exhibits a critical and underexplored failure mode in short-text classification—attention collapse, wherein attention weights converge to uniform distributions during training, resulting in semantic information loss and severe accuracy degradation.
+
+</p>
+
+<p style="margin-bottom: 1.5rem;">
+
+This phenomenon occurs when input feature variance falls below critical thresholds, destabilizing the softmax dynamics of the scaled dot-product attention. While extensively deployed in resource-constrained environments (mobile, IoT, edge devices), existing short-text models suffer from undiagnosed collapse, reducing efficiency and reliability without actionable mitigation strategies.
+
+</p>
+
+<h4 style="color: var(--text-primary); font-size: 1.3rem; margin-top: 2rem; margin-bottom: 1rem;">Methodology & Contribution</h4>
+
+<p style="margin-bottom: 1.5rem;">
+
+This thesis advances a unified diagnostic and mitigation paradigm rooted in optimization and signal stability theory. We first delineate collapse through entropy profiling across benchmarks, uncovering a direct covariance between input feature depletion and attention homogenization. Extending Bishop's variational framework for neural network stability to multi-head dynamics, we derive rigorous stability bounds that reveal how standard scaling worsens fragility under low-variance conditions.
+
+</p>
+
+<p style="margin-bottom: 1.5rem;">
+
+Motivated by these insights, we introduce <strong>Variance-Adaptive Scaling (VAS)</strong>: a lightweight, parameter-free adjustment that calibrates the attention temperature via batch-wise variance estimates, enforcing robust softmax equilibria without architectural overhead.
+
+</p>
+
+<h4 style="color: var(--text-primary); font-size: 1.3rem; margin-top: 2rem; margin-bottom: 1rem;">Results & Impact</h4>
+
+<p style="margin-bottom: 1rem;">
+
+Empirical scrutiny on a compact 4-layer Transformer (256 hidden dimensions) affirms VAS's efficacy:
+
+</p>
+
+<ul style="list-style: none; padding-left: 0; margin-bottom: 1.5rem;">
+
+<li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative; color: var(--text-secondary);">
+
+<span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">✓</span>
+
+Attention entropy surged from 0.15 to 0.68—a <strong>377% restoration</strong>
+
+</li>
+
+<li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative; color: var(--text-secondary);">
+
+<span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">✓</span>
+
+SST-2 accuracy climbed <strong>18.3%</strong> by epoch 5
+
+</li>
+
+<li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative; color: var(--text-secondary);">
+
+<span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">✓</span>
+
+Convergence hastened <strong>43%</strong> via smoother loss landscapes (verified through Hessian-free approximations)
+
+</li>
+
+<li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative; color: var(--text-secondary);">
+
+<span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">✓</span>
+
+On RTX 3050: <strong>&lt;1 MB footprint</strong> and trivial latency
+
+</li>
+
+</ul>
+
+<p>
+
+Beyond rectification, our toolkit equips practitioners with entropy diagnostics for proactive collapse detection, fostering interpretable, resilient Transformers in production short-text pipelines. This research demonstrates viability for battery-constrained inference in edge computing environments.
+
+</p>
+
+</div>
+
+</section>
+
+  
+
+<section id="skills">
+
+<h2 class="section-title">Technical Skills</h2>
+
+<div class="skills-grid">
+
+<div class="skill-category">
+
+<h4>Languages</h4>
+
+<div class="skill-tags">
+
+<span class="skill-tag">JavaScript</span>
+
+<span class="skill-tag">Java</span>
+
+<span class="skill-tag">Go</span>
+
+<span class="skill-tag">Python</span>
+
+<span class="skill-tag">SQL</span>
+
+</div>
+
+</div>
+
+  
+
+<div class="skill-category">
+
+<h4>Frameworks</h4>
+
+<div class="skill-tags">
+
+<span class="skill-tag">Spring Cloud</span>
+
+<span class="skill-tag">Spring Reactive</span>
+
+<span class="skill-tag">React JS</span>
+
+<span class="skill-tag">Spring Cloud Stream</span>
+
+</div>
+
+</div>
+
+  
+
+<div class="skill-category">
+
+<h4>Cloud & DevOps</h4>
+
+<div class="skill-tags">
+
+<span class="skill-tag">Kubernetes</span>
+
+<span class="skill-tag">Docker</span>
+
+<span class="skill-tag">Jenkins</span>
+
+<span class="skill-tag">Spinnaker</span>
+
+</div>
+
+</div>
+
+  
+
+<div class="skill-category">
+
+<h4>Databases</h4>
+
+<div class="skill-tags">
+
+<span class="skill-tag">Oracle DB</span>
+
+<span class="skill-tag">MySQL</span>
+
+<span class="skill-tag">Tibco EMS</span>
+
+</div>
+
+</div>
+
+  
+
+<div class="skill-category">
+
+<h4>Monitoring & Testing</h4>
+
+<div class="skill-tags">
+
+<span class="skill-tag">New Relic</span>
+
+<span class="skill-tag">Grafana</span>
+
+<span class="skill-tag">JMeter</span>
+
+<span class="skill-tag">Postman</span>
+
+<span class="skill-tag">JConsole</span>
+
+</div>
+
+</div>
+
+  
+
+<div class="skill-category">
+
+<h4>AI/ML Research</h4>
+
+<div class="skill-tags">
+
+<span class="skill-tag">Transformers</span>
+
+<span class="skill-tag">NLP</span>
+
+<span class="skill-tag">Deep Learning</span>
+
+<span class="skill-tag">Optimization Theory</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+  
+
+<section id="awards">
+
+<h2 class="section-title">Awards & Recognition</h2>
+
+<div class="awards-list">
+
+<div class="award-item">
+
+<div class="award-icon">🏆</div>
+
+<div class="award-content">
+
+<h4>LLAMA Award Q1 2024</h4>
+
+<p>Best Employee - ServiceNow</p>
+
+</div>
+
+</div>
+
+  
+
+<div class="award-item">
+
+<div class="award-icon">⭐</div>
+
+<div class="award-content">
+
+<h4>Hi-Talent Recognition</h4>
+
+<p>Identified as Hi-Talent and awarded early promotion - TCS</p>
+
+</div>
+
+</div>
+
+  
+
+<div class="award-item">
+
+<div class="award-icon">🎯</div>
+
+<div class="award-content">
+
+<h4>On the Spot Award</h4>
+
+<p>Outstanding Performance (December 2020) - TCS</p>
+
+</div>
+
+</div>
+
+  
+
+<div class="award-item">
+
+<div class="award-icon">📧</div>
+
+<div class="award-content">
+
+<h4>Client Appreciation</h4>
+
+<p>Outstanding go-live phase performance</p>
+
+</div>
+
+</div>
+
+  
+
+<div class="award-item">
+
+<div class="award-icon">📐</div>
+
+<div class="award-content">
+
+<h4>School Topper</h4>
+
+<p>Mathematics - 12th AISSCE (95/100)</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+  
+
+<section id="contact">
+
+<h2 class="section-title">Get In Touch</h2>
+
+<div class="contact-info">
+
+<p style="margin-bottom: 1rem;">I'm always open to discussing new opportunities, collaborations, or research ideas.</p>
+
+<p>📧 <a href="mailto:arnabhattacharya10@gmail.com">arnabhattacharya10@gmail.com</a></p>
+
+<p>📱 <a href="tel:+916289402839">+91 6289402839</a></p>
+
+</div>
+
+</section>
+
+  
+
+<footer>
+
+<p>&copy; 2025 Arnab Bhattacharya. All rights reserved.</p>
+
+</footer>
+
+  
+
+<script>
+
+// Theme Toggle
+
+function toggleTheme() {
+
+const html = document.documentElement;
+
+const currentTheme = html.getAttribute('data-theme');
+
+const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+html.setAttribute('data-theme', newTheme);
+
+localStorage.setItem('theme', newTheme);
+
+}
+
+  
+
+// Load saved theme
+
+const savedTheme = localStorage.getItem('theme') || 'dark';
+
+document.documentElement.setAttribute('data-theme', savedTheme);
+
+  
+
+// Smooth Scroll
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+anchor.addEventListener('click', function (e) {
+
+e.preventDefault();
+
+const target = document.querySelector(this.getAttribute('href'));
+
+if (target) {
+
+target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+}
+
+});
+
+});
+
+  
+
+// Scroll Animations
+
+const observerOptions = {
+
+threshold: 0.1,
+
+rootMargin: '0px 0px -100px 0px'
+
+};
+
+  
+
+const observer = new IntersectionObserver((entries) => {
+
+entries.forEach(entry => {
+
+if (entry.isIntersecting) {
+
+entry.target.classList.add('visible');
+
+}
+
+});
+
+}, observerOptions);
+
+  
+
+document.querySelectorAll('section').forEach(section => {
+
+observer.observe(section);
+
+});
+
+  
+
+// Timeline items animation
+
+const timelineItems = document.querySelectorAll('.timeline-item');
+
+const timelineObserver = new IntersectionObserver((entries) => {
+
+entries.forEach(entry => {
+
+if (entry.isIntersecting) {
+
+entry.target.classList.add('visible');
+
+}
+
+});
+
+}, {
+
+threshold: 0.2,
+
+rootMargin: '0px 0px -50px 0px'
+
+});
+
+  
+
+timelineItems.forEach(item => {
+
+timelineObserver.observe(item);
+
+});
+
+  
+
+// Navbar scroll effect
+
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+
+const navbar = document.getElementById('navbar');
+
+const currentScroll = window.pageYOffset;
+
+if (currentScroll > 100) {
+
+navbar.style.padding = '0.5rem 0';
+
+} else {
+
+navbar.style.padding = '1rem 0';
+
+}
+
+lastScroll = currentScroll;
+
+});
+
+</script>
+
 </body>
+
 </html>

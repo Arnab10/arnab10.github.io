@@ -1,1007 +1,2207 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Arnab Bhattacharya - Software Engineer & AI Researcher</title>
+
 <style>
+
 * {
+
 margin: 0;
+
 padding: 0;
+
 box-sizing: border-box;
+
 }
+
+  
 
 :root {
---bg-primary: #2C1A0E;
---bg-secondary: #3D2512;
---text-primary: #F5F0E8;
---text-secondary: #C4AA8A;
---accent: #C47A3A;
---accent-hover: #D4893F;
---glass-bg: rgba(244, 237, 220, 0.06);
---glass-border: rgba(244, 237, 220, 0.12);
+
+--bg-primary: #000000;
+
+--bg-secondary: #1a1a1a;
+
+--text-primary: #ffffff;
+
+--text-secondary: #a0a0a0;
+
+--accent: #0071e3;
+
+--accent-hover: #0077ed;
+
+--glass-bg: rgba(255, 255, 255, 0.05);
+
+--glass-border: rgba(255, 255, 255, 0.1);
+
 }
+
+  
 
 [data-theme="light"] {
---bg-primary: #F5F0E8;
---bg-secondary: #EDE5D2;
---text-primary: #2C1A0E;
---text-secondary: #6B4C2A;
---accent: #7A3E10;
---accent-hover: #9B5218;
---glass-bg: rgba(44, 26, 14, 0.05);
---glass-border: rgba(44, 26, 14, 0.1);
+
+--bg-primary: #f5f5f7;
+
+--bg-secondary: #ffffff;
+
+--text-primary: #1d1d1f;
+
+--text-secondary: #6e6e73;
+
+--accent: #0071e3;
+
+--accent-hover: #0077ed;
+
+--glass-bg: rgba(255, 255, 255, 0.7);
+
+--glass-border: rgba(0, 0, 0, 0.1);
+
 }
+
+  
 
 body {
+
 font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+
 background: var(--bg-primary);
+
 color: var(--text-primary);
+
 line-height: 1.6;
+
 overflow-x: hidden;
+
 transition: background 0.5s ease, color 0.5s ease;
+
 }
+
+  
 
 /* Animated Background */
+
 .bg-animation {
+
 position: fixed;
+
 top: 0;
+
 left: 0;
+
 width: 100%;
+
 height: 100%;
+
 z-index: -1;
+
 overflow: hidden;
+
 }
+
+  
 
 .blob {
+
 position: absolute;
+
 border-radius: 50%;
+
 filter: blur(80px);
-opacity: 0.35;
+
+opacity: 0.5;
+
 animation: float 20s infinite ease-in-out;
+
 }
+
+  
 
 .blob1 {
+
 width: 500px;
+
 height: 500px;
-background: linear-gradient(45deg, #7A3E10, #C47A3A);
+
+background: linear-gradient(45deg, #0071e3, #00c7be);
+
 top: -250px;
+
 left: -250px;
+
 animation: float 25s infinite ease-in-out;
+
 }
+
+  
 
 .blob2 {
+
 width: 400px;
+
 height: 400px;
-background: linear-gradient(45deg, #5C2E0A, #A0622A);
+
+background: linear-gradient(45deg, #af52de, #ff2d55);
+
 top: 50%;
+
 right: -200px;
+
 animation: float 30s infinite ease-in-out reverse;
+
 }
+
+  
 
 .blob3 {
+
 width: 450px;
+
 height: 450px;
-background: linear-gradient(45deg, #3D2512, #8B5230);
+
+background: linear-gradient(45deg, #30d158, #ffd60a);
+
 bottom: -225px;
+
 left: 50%;
+
 animation: float 35s infinite ease-in-out;
+
 }
+
+  
 
 @keyframes float {
-0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-25% { transform: translate(100px, 100px) rotate(90deg) scale(1.1); }
-50% { transform: translate(200px, -50px) rotate(180deg) scale(0.9); }
-75% { transform: translate(-100px, 150px) rotate(270deg) scale(1.05); }
-100% { transform: translate(0, 0) rotate(360deg) scale(1); }
+
+0% {
+
+transform: translate(0, 0) rotate(0deg) scale(1);
+
 }
+
+25% {
+
+transform: translate(100px, 100px) rotate(90deg) scale(1.1);
+
+}
+
+50% {
+
+transform: translate(200px, -50px) rotate(180deg) scale(0.9);
+
+}
+
+75% {
+
+transform: translate(-100px, 150px) rotate(270deg) scale(1.05);
+
+}
+
+100% {
+
+transform: translate(0, 0) rotate(360deg) scale(1);
+
+}
+
+}
+
+  
 
 /* Navigation */
+
 nav {
+
 position: fixed;
+
 top: 0;
+
 width: 100%;
+
 z-index: 1000;
+
 backdrop-filter: blur(30px) saturate(180%);
+
 -webkit-backdrop-filter: blur(30px) saturate(180%);
-background: rgba(44, 26, 14, 0.75);
-border-bottom: 1px solid rgba(196, 170, 138, 0.18);
+
+background: rgba(255, 255, 255, 0.08);
+
+border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+
 transition: all 0.3s ease;
+
 }
+
+  
 
 [data-theme="light"] nav {
-background: rgba(245, 240, 232, 0.85);
-border-bottom: 1px solid rgba(44, 26, 14, 0.12);
+
+background: rgba(255, 255, 255, 0.72);
+
+border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
 }
+
+  
 
 nav .container {
+
 max-width: 1200px;
+
 margin: 0 auto;
+
 padding: 1rem 2rem;
+
 display: flex;
+
 justify-content: space-between;
+
 align-items: center;
+
 }
+
+  
 
 nav .logo {
+
 font-size: 1.5rem;
+
 font-weight: 600;
+
 letter-spacing: -0.5px;
-color: var(--accent);
+
 }
+
+  
 
 nav ul {
+
 display: flex;
+
 list-style: none;
+
 gap: 2rem;
+
 align-items: center;
+
 }
+
+  
 
 nav a {
+
 color: var(--text-primary);
+
 text-decoration: none;
+
 font-size: 0.95rem;
+
 transition: color 0.3s ease;
+
 font-weight: 400;
+
 }
 
-nav a:hover { color: var(--accent); }
+  
+
+nav a:hover {
+
+color: var(--accent);
+
+}
+
+  
 
 .theme-toggle {
+
 background: var(--glass-bg);
+
 border: 1px solid var(--glass-border);
+
 padding: 0.5rem 1rem;
+
 border-radius: 20px;
+
 cursor: pointer;
+
 transition: all 0.3s ease;
+
 font-size: 0.9rem;
+
 color: var(--text-primary);
+
 }
+
+  
 
 .theme-toggle:hover {
+
 background: var(--accent);
+
 color: white;
+
 }
+
+  
 
 /* Hero Section */
+
 .hero {
+
 min-height: 100vh;
+
 display: flex;
+
 align-items: center;
+
 justify-content: center;
+
 text-align: center;
+
 padding: 0 2rem;
+
 opacity: 0;
+
 animation: fadeIn 1s ease forwards;
+
 }
 
-@keyframes fadeIn { to { opacity: 1; } }
+  
+
+@keyframes fadeIn {
+
+to { opacity: 1; }
+
+}
+
+  
 
 .hero h1 {
+
 font-size: clamp(3rem, 8vw, 6rem);
+
 font-weight: 700;
+
 letter-spacing: -2px;
+
 margin-bottom: 1rem;
-background: linear-gradient(135deg, #F5F0E8 0%, #C4AA8A 100%);
+
+background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+
 -webkit-background-clip: text;
+
 -webkit-text-fill-color: transparent;
+
 background-clip: text;
+
 }
 
-[data-theme="light"] .hero h1 {
-background: linear-gradient(135deg, #2C1A0E 0%, #7A3E10 100%);
--webkit-background-clip: text;
-background-clip: text;
-}
+  
 
 .hero .subtitle {
+
 font-size: clamp(1.2rem, 3vw, 1.8rem);
+
 color: var(--text-secondary);
+
 margin-bottom: 2rem;
+
 font-weight: 300;
+
 }
+
+  
 
 .hero .tagline {
+
 font-size: 1.1rem;
+
 color: var(--accent);
+
 margin-bottom: 3rem;
+
 }
+
+  
 
 .cta-buttons {
+
 display: flex;
+
 gap: 1rem;
+
 justify-content: center;
+
 flex-wrap: wrap;
+
 }
+
+  
 
 .btn {
+
 padding: 1rem 2rem;
+
 border-radius: 25px;
+
 text-decoration: none;
+
 font-weight: 500;
+
 transition: all 0.3s ease;
+
 font-size: 1rem;
+
 }
+
+  
 
 .btn-primary {
+
 background: var(--accent);
-color: #F5F0E8;
+
+color: white;
+
 border: none;
+
 }
+
+  
 
 .btn-primary:hover {
+
 background: var(--accent-hover);
+
 transform: translateY(-2px);
-box-shadow: 0 10px 30px rgba(196, 122, 58, 0.3);
+
+box-shadow: 0 10px 30px rgba(0, 113, 227, 0.3);
+
 }
+
+  
 
 .btn-secondary {
+
 background: var(--glass-bg);
+
 color: var(--text-primary);
+
 border: 1px solid var(--glass-border);
+
 backdrop-filter: blur(10px);
+
 }
+
+  
 
 .btn-secondary:hover {
+
 background: var(--glass-border);
+
 transform: translateY(-2px);
+
 }
+
+  
 
 /* Section Styles */
+
 section {
+
 padding: 6rem 2rem;
+
 max-width: 1200px;
+
 margin: 0 auto;
+
 opacity: 0;
+
 transform: translateY(50px);
+
 transition: all 0.8s ease;
+
 }
+
+  
 
 section.visible {
+
 opacity: 1;
+
 transform: translateY(0);
+
 }
+
+  
 
 .section-title {
+
 font-size: clamp(2.5rem, 5vw, 4rem);
+
 font-weight: 700;
+
 margin-bottom: 3rem;
+
 letter-spacing: -1px;
+
 text-align: center;
-color: var(--text-primary);
+
 }
+
+  
 
 /* Cards */
+
 .card {
+
 background: var(--glass-bg);
+
 backdrop-filter: blur(20px);
+
 border: 1px solid var(--glass-border);
+
 border-radius: 20px;
+
 padding: 2rem;
+
 margin-bottom: 2rem;
+
 transition: all 0.3s ease;
+
 }
+
+  
 
 .card:hover {
+
 transform: translateY(-5px);
-box-shadow: 0 20px 40px rgba(196, 122, 58, 0.1);
+
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+
 }
+
+  
 
 .card h3 {
+
 font-size: 1.8rem;
+
 margin-bottom: 0.5rem;
+
 color: var(--accent);
+
 }
+
+  
 
 .card .company {
+
 font-size: 1.3rem;
+
 margin-bottom: 0.5rem;
+
 font-weight: 600;
+
 }
+
+  
 
 .card .duration {
+
 color: var(--text-secondary);
+
 margin-bottom: 1rem;
+
 font-size: 0.95rem;
+
 }
 
-.card ul { list-style: none; padding-left: 0; }
+  
+
+.card ul {
+
+list-style: none;
+
+padding-left: 0;
+
+}
+
+  
 
 .card li {
+
 margin-bottom: 0.8rem;
+
 padding-left: 1.5rem;
+
 position: relative;
+
 color: var(--text-secondary);
+
 }
+
+  
 
 .card li:before {
+
 content: "▹";
+
 position: absolute;
+
 left: 0;
+
 color: var(--accent);
+
 font-weight: bold;
+
 }
 
-/* Timeline */
+  
+
+/* Timeline Styles */
+
 .timeline {
+
 position: relative;
+
 max-width: 1200px;
+
 margin: 0 auto;
+
 padding: 2rem 0;
+
 }
+
+  
 
 .timeline::before {
+
 content: '';
+
 position: absolute;
+
 left: 50%;
+
 transform: translateX(-50%);
+
 width: 4px;
+
 height: 100%;
-background: linear-gradient(180deg, var(--accent), rgba(196, 122, 58, 0.2));
+
+background: linear-gradient(180deg, var(--accent), rgba(0, 113, 227, 0.3));
+
 border-radius: 2px;
+
 }
+
+  
 
 .timeline-item {
+
 position: relative;
+
 margin-bottom: 4rem;
+
 opacity: 0;
+
 transform: translateY(50px);
+
 transition: all 0.8s ease;
+
 }
+
+  
 
 .timeline-item.visible {
+
 opacity: 1;
+
 transform: translateY(0);
+
 }
 
-.timeline-item:nth-child(odd) { padding-right: 55%; }
-.timeline-item:nth-child(even) { padding-left: 55%; text-align: left; }
+  
+
+.timeline-item:nth-child(odd) {
+
+padding-right: 55%;
+
+}
+
+  
+
+.timeline-item:nth-child(even) {
+
+padding-left: 55%;
+
+text-align: left;
+
+}
+
+  
 
 .timeline-content {
+
 background: var(--glass-bg);
+
 backdrop-filter: blur(20px);
+
 border: 1px solid var(--glass-border);
+
 border-radius: 20px;
+
 padding: 2rem;
+
 position: relative;
+
 transition: all 0.3s ease;
+
 }
+
+  
 
 .timeline-content:hover {
+
 transform: translateY(-10px);
-box-shadow: 0 20px 40px rgba(196, 122, 58, 0.15);
+
+box-shadow: 0 20px 40px rgba(0, 113, 227, 0.2);
+
 border-color: var(--accent);
+
 }
+
+  
 
 .timeline-dot {
+
 position: absolute;
+
 left: 50%;
+
 transform: translateX(-50%);
+
 width: 20px;
+
 height: 20px;
+
 background: var(--accent);
+
 border: 4px solid var(--bg-primary);
+
 border-radius: 50%;
+
 top: 2rem;
+
 z-index: 10;
-box-shadow: 0 0 20px rgba(196, 122, 58, 0.5);
+
+box-shadow: 0 0 20px rgba(0, 113, 227, 0.5);
+
 animation: pulse 2s infinite;
+
 }
+
+  
 
 @keyframes pulse {
-0%, 100% { box-shadow: 0 0 20px rgba(196, 122, 58, 0.5); }
-50% { box-shadow: 0 0 30px rgba(196, 122, 58, 0.9); }
+
+0%, 100% {
+
+box-shadow: 0 0 20px rgba(0, 113, 227, 0.5);
+
 }
+
+50% {
+
+box-shadow: 0 0 30px rgba(0, 113, 227, 0.8);
+
+}
+
+}
+
+  
 
 .timeline-item:nth-child(odd) .timeline-content::before {
+
 content: '';
+
 position: absolute;
+
 right: -20px;
+
 top: 2rem;
+
 width: 0;
+
 height: 0;
+
 border-top: 10px solid transparent;
+
 border-bottom: 10px solid transparent;
+
 border-left: 20px solid var(--glass-border);
+
 }
 
+  
+
 .timeline-item:nth-child(odd) .timeline-content::after {
+
 content: '';
+
 position: absolute;
+
 right: -19px;
+
 top: 2rem;
+
 width: 0;
+
 height: 0;
+
 border-top: 10px solid transparent;
+
 border-bottom: 10px solid transparent;
+
 border-left: 20px solid var(--glass-bg);
+
 }
+
+  
 
 .timeline-item:nth-child(even) .timeline-content::before {
+
 content: '';
+
 position: absolute;
+
 left: -20px;
+
 top: 2rem;
+
 width: 0;
+
 height: 0;
+
 border-top: 10px solid transparent;
+
 border-bottom: 10px solid transparent;
+
 border-right: 20px solid var(--glass-border);
+
 }
+
+  
 
 .timeline-item:nth-child(even) .timeline-content::after {
+
 content: '';
+
 position: absolute;
+
 left: -19px;
+
 top: 2rem;
+
 width: 0;
+
 height: 0;
+
 border-top: 10px solid transparent;
+
 border-bottom: 10px solid transparent;
+
 border-right: 20px solid var(--glass-bg);
+
 }
 
-.timeline-content h3 { font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--accent); }
+  
+
+.timeline-content h3 {
+
+font-size: 1.8rem;
+
+margin-bottom: 0.5rem;
+
+color: var(--accent);
+
+}
+
+  
 
 .timeline-content .company {
+
 font-size: 1.4rem;
+
 margin-bottom: 0.5rem;
+
 font-weight: 600;
+
 display: flex;
+
 align-items: center;
+
 gap: 0.5rem;
+
 }
 
-.timeline-content .company-logo { font-size: 1.8rem; }
+  
+
+.timeline-content .company-logo {
+
+font-size: 1.8rem;
+
+}
+
+  
 
 .timeline-content .duration {
+
 color: var(--text-secondary);
+
 margin-bottom: 1.5rem;
+
 font-size: 0.95rem;
+
 display: inline-block;
+
 background: var(--bg-secondary);
+
 padding: 0.3rem 0.8rem;
+
 border-radius: 15px;
+
 border: 1px solid var(--glass-border);
+
 }
 
-.timeline-content ul { list-style: none; padding-left: 0; }
+  
+
+.timeline-content ul {
+
+list-style: none;
+
+padding-left: 0;
+
+}
+
+  
 
 .timeline-content li {
+
 margin-bottom: 0.8rem;
+
 padding-left: 1.5rem;
+
 position: relative;
+
 color: var(--text-secondary);
+
 line-height: 1.6;
+
 }
+
+  
 
 .timeline-content li:before {
+
 content: "▹";
+
 position: absolute;
+
 left: 0;
+
 color: var(--accent);
+
 font-weight: bold;
+
 }
 
+  
+
 @media (max-width: 768px) {
-.timeline::before { left: 30px; }
+
+.timeline::before {
+
+left: 30px;
+
+}
+
+  
 
 .timeline-item:nth-child(odd),
+
 .timeline-item:nth-child(even) {
+
 padding-left: 80px;
+
 padding-right: 0;
+
 text-align: left;
+
 }
 
-.timeline-dot { left: 30px; }
+  
+
+.timeline-dot {
+
+left: 30px;
+
+}
+
+  
 
 .timeline-item:nth-child(odd) .timeline-content::before,
-.timeline-item:nth-child(odd) .timeline-content::after {
-right: auto;
-left: -20px;
-border-left: none;
-border-right: 20px solid var(--glass-border);
-}
 
 .timeline-item:nth-child(odd) .timeline-content::after {
+
+right: auto;
+
+left: -20px;
+
+border-left: none;
+
+border-right: 20px solid var(--glass-border);
+
+}
+
+  
+
+.timeline-item:nth-child(odd) .timeline-content::after {
+
 left: -19px;
+
 border-right: 20px solid var(--glass-bg);
+
 }
+
 }
+
+  
 
 /* Education */
+
 .education-grid {
+
 display: grid;
+
 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
 gap: 2rem;
+
 }
+
+  
 
 .education-card {
+
 background: var(--glass-bg);
+
 backdrop-filter: blur(20px);
+
 border: 1px solid var(--glass-border);
+
 border-radius: 20px;
+
 padding: 2rem;
+
 text-align: center;
+
 transition: all 0.3s ease;
+
 }
+
+  
 
 .education-card:hover {
+
 transform: translateY(-10px);
-box-shadow: 0 20px 40px rgba(196, 122, 58, 0.1);
+
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+
 }
 
-.education-card h3 { color: var(--accent); margin-bottom: 1rem; font-size: 1.5rem; }
-.education-card .school { font-weight: 600; margin-bottom: 0.5rem; }
-.education-card .score { color: var(--text-secondary); font-size: 0.95rem; }
+  
+
+.education-card h3 {
+
+color: var(--accent);
+
+margin-bottom: 1rem;
+
+font-size: 1.5rem;
+
+}
+
+  
+
+.education-card .school {
+
+font-weight: 600;
+
+margin-bottom: 0.5rem;
+
+}
+
+  
+
+.education-card .score {
+
+color: var(--text-secondary);
+
+font-size: 0.95rem;
+
+}
+
+  
 
 /* Skills */
+
 .skills-grid {
+
 display: grid;
+
 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
 gap: 1.5rem;
+
 }
+
+  
 
 .skill-category {
+
 background: var(--glass-bg);
+
 backdrop-filter: blur(20px);
+
 border: 1px solid var(--glass-border);
+
 border-radius: 15px;
+
 padding: 1.5rem;
+
 }
 
-.skill-category h4 { color: var(--accent); margin-bottom: 1rem; font-size: 1.2rem; }
+  
 
-.skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.skill-category h4 {
+
+color: var(--accent);
+
+margin-bottom: 1rem;
+
+font-size: 1.2rem;
+
+}
+
+  
+
+.skill-tags {
+
+display: flex;
+
+flex-wrap: wrap;
+
+gap: 0.5rem;
+
+}
+
+  
 
 .skill-tag {
+
 background: var(--bg-secondary);
+
 padding: 0.5rem 1rem;
+
 border-radius: 20px;
+
 font-size: 0.9rem;
+
 color: var(--text-secondary);
+
 border: 1px solid var(--glass-border);
-transition: all 0.2s ease;
+
 }
 
-.skill-tag:hover {
-border-color: var(--accent);
-color: var(--accent);
-}
+  
 
 /* Awards */
-.awards-list { display: grid; gap: 1.5rem; }
+
+.awards-list {
+
+display: grid;
+
+gap: 1.5rem;
+
+}
+
+  
 
 .award-item {
+
 background: var(--glass-bg);
+
 backdrop-filter: blur(20px);
+
 border: 1px solid var(--glass-border);
+
 border-radius: 15px;
+
 padding: 1.5rem;
+
 display: flex;
+
 align-items: center;
+
 gap: 1rem;
-transition: all 0.3s ease;
+
 }
 
-.award-item:hover {
-transform: translateX(5px);
-border-color: var(--accent);
+  
+
+.award-icon {
+
+font-size: 2rem;
+
 }
 
-.award-icon { font-size: 2rem; }
-.award-content h4 { color: var(--accent); margin-bottom: 0.3rem; }
-.award-content p { color: var(--text-secondary); font-size: 0.95rem; }
+  
+
+.award-content h4 {
+
+color: var(--accent);
+
+margin-bottom: 0.3rem;
+
+}
+
+  
+
+.award-content p {
+
+color: var(--text-secondary);
+
+font-size: 0.95rem;
+
+}
+
+  
 
 /* Contact */
-.contact-info { text-align: center; font-size: 1.2rem; }
+
+.contact-info {
+
+text-align: center;
+
+font-size: 1.2rem;
+
+}
+
+  
 
 .contact-info a {
+
 color: var(--accent);
+
 text-decoration: none;
+
 transition: color 0.3s ease;
+
 }
+
+  
 
 .contact-info a:hover {
+
 color: var(--accent-hover);
+
 text-decoration: underline;
+
 }
+
+  
 
 /* Footer */
+
 footer {
+
 text-align: center;
+
 padding: 2rem;
+
 color: var(--text-secondary);
+
 border-top: 1px solid var(--glass-border);
+
 backdrop-filter: blur(20px);
+
 background: var(--glass-bg);
+
 }
+
+  
 
 /* Responsive */
+
 @media (max-width: 768px) {
-nav ul { display: none; }
-.hero h1 { font-size: 3rem; }
-section { padding: 4rem 1.5rem; }
+
+nav ul {
+
+display: none;
+
 }
+
+  
+
+.hero h1 {
+
+font-size: 3rem;
+
+}
+
+  
+
+section {
+
+padding: 4rem 1.5rem;
+
+}
+
+}
+
+  
 
 /* Thesis Section */
+
 .thesis-section {
+
 background: var(--glass-bg);
+
 backdrop-filter: blur(20px);
+
 border: 1px solid var(--glass-border);
+
 border-radius: 20px;
+
 padding: 3rem;
+
 margin: 3rem 0;
+
 }
 
-.thesis-section h3 { color: var(--accent); font-size: 2rem; margin-bottom: 1.5rem; }
+  
+
+.thesis-section h3 {
+
+color: var(--accent);
+
+font-size: 2rem;
+
+margin-bottom: 1.5rem;
+
+}
+
+  
 
 .thesis-section p {
+
 color: var(--text-secondary);
+
 line-height: 1.8;
+
 text-align: justify;
+
 }
 
-/* Decorative divider */
-.section-divider {
-width: 60px;
-height: 3px;
-background: var(--accent);
-margin: 0 auto 3rem;
-border-radius: 2px;
-}
 </style>
+
 </head>
+
 <body>
 
 <div class="bg-animation">
+
 <div class="blob blob1"></div>
+
 <div class="blob blob2"></div>
+
 <div class="blob blob3"></div>
+
 </div>
+
+  
 
 <nav id="navbar">
+
 <div class="container">
+
 <div class="logo">Arnab Bhattacharya</div>
+
 <ul>
+
 <li><a href="#about">About</a></li>
+
 <li><a href="#experience">Experience</a></li>
+
 <li><a href="#education">Education</a></li>
+
 <li><a href="#research">Research</a></li>
+
 <li><a href="#skills">Skills</a></li>
+
 <li><a href="#awards">Awards</a></li>
+
 <li><a href="#contact">Contact</a></li>
+
 </ul>
+
 <button class="theme-toggle" onclick="toggleTheme()">🌓 Theme</button>
+
 </div>
+
 </nav>
 
+  
+
 <section class="hero">
+
 <div>
+
 <h1>Arnab Bhattacharya</h1>
+
 <p class="subtitle">Senior Software Engineer & AI Researcher</p>
+
 <p class="tagline">Building scalable systems & advancing Transformer architectures</p>
+
 <div class="cta-buttons">
+
 <a href="#experience" class="btn btn-primary">View My Work</a>
+
 <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+
 </div>
+
 </div>
+
 </section>
+
+  
 
 <section id="about">
+
 <h2 class="section-title">About Me</h2>
-<div class="section-divider"></div>
+
 <div class="card">
+
 <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary);">
+
 I'm a passionate software engineer with 5+ years of experience building high-performance, scalable applications across TCS, Oracle Cerner, and ServiceNow. Currently pursuing M.Tech in AI & Data Science Engineering from IIT Patna, where I'm researching Transformer architectures and attention mechanisms. I specialize in microservices, performance optimization, and cutting-edge AI research.
+
 </p>
+
 </div>
+
 </section>
 
+  
+
 <section id="experience">
+
 <h2 class="section-title">Professional Experience</h2>
-<div class="section-divider"></div>
+
 <div class="timeline">
 
 <div class="timeline-item">
+
 <div class="timeline-dot"></div>
+
 <div class="timeline-content">
+
 <h3>Senior Software Engineer</h3>
-<p class="company"><span class="company-logo">🚀</span> ServiceNow</p>
+
+<p class="company">
+
+<span class="company-logo">🚀</span>
+
+ServiceNow
+
+</p>
+
 <span class="duration">April 2023 - Present</span>
+
 <ul>
+
 <li>Complete ownership of ITOM licensing store application using JavaScript</li>
+
 <li>Achieved 63% scalability improvement through custom asynchronous framework using message queue</li>
+
 <li>Reduced memory footprint from 1800 MB to 700 MB (61% reduction)</li>
+
 <li>Developed certificate management store and external issuer in Go for Kubernetes TLS certificate management</li>
+
 <li>Implemented AI agents for certificate renewal using ServiceNow's agentic AI framework</li>
+
 <li>Built Kubernetes visibility agent using JavaScript, Go, and Java</li>
+
 <li>Worked on 4 store applications simultaneously</li>
+
 </ul>
-</div>
+
 </div>
 
+</div>
+
+  
+
 <div class="timeline-item">
+
 <div class="timeline-dot"></div>
+
 <div class="timeline-content">
+
 <h3>Software Engineer 2</h3>
-<p class="company"><span class="company-logo">☁️</span> Oracle Cerner</p>
+
+<p class="company">
+
+<span class="company-logo">☁️</span>
+
+Oracle Cerner
+
+</p>
+
 <span class="duration">December 2021 - April 2023</span>
+
 <ul>
+
 <li>Built microservices using Java Spring Cloud, Spring Reactive, and concurrent programming</li>
+
 <li>Deployed applications on Kubernetes with Docker containerization</li>
+
 <li>Created custom API performance testing tool from scratch replacing Vegeta</li>
+
 <li>Implemented event-driven architecture with Spring Cloud Stream and Tibco EMS</li>
+
 <li>Developed React JS UI for transaction logging and monitoring</li>
+
 <li>Performance optimization using JMeter, JConsole, New Relic, and Grafana</li>
+
 <li>Managed CI/CD pipelines with Jenkins and Spinnaker</li>
+
 </ul>
+
 </div>
+
 </div>
+
+  
 
 <div class="timeline-item">
+
 <div class="timeline-dot"></div>
+
 <div class="timeline-content">
+
 <h3>System Engineer</h3>
-<p class="company"><span class="company-logo">💼</span> Tata Consultancy Services (TCS)</p>
+
+<p class="company">
+
+<span class="company-logo">💼</span>
+
+Tata Consultancy Services (TCS)
+
+</p>
+
 <span class="duration">2019 - December 2021</span>
+
 <ul>
+
 <li>Worked on BaNCS insurance portal (TCS proprietary product)</li>
+
 <li>Developed using HTML, JSP, JavaScript, and Java</li>
+
 <li>Created complex stored procedures in Oracle DB for policy lifecycle logic</li>
+
 <li>Built REST APIs for BaNCS integration with external applications</li>
+
 <li>Identified as Hi-Talent and awarded early promotion</li>
+
 </ul>
-</div>
+
 </div>
 
 </div>
+
+</div>
+
 </section>
+
+  
 
 <section id="education">
+
 <h2 class="section-title">Education</h2>
-<div class="section-divider"></div>
+
 <div class="education-grid">
+
 <div class="education-card">
+
 <h3>M.Tech in AI & DSE</h3>
+
 <p class="school">IIT Patna</p>
+
 <p class="duration">2024 - Present</p>
+
 <p class="score">Currently working on thesis research</p>
+
 </div>
+
+  
+
 <div class="education-card">
+
 <h3>B.Tech in ECE</h3>
+
 <p class="school">IEM, Saltlake</p>
+
 <p class="duration">2015 - 2019</p>
+
 <p class="score">CGPA: 8.2</p>
+
 </div>
+
+  
+
 <div class="education-card">
+
 <h3>Class 12th (CBSE)</h3>
+
 <p class="school">BDM International School</p>
+
 <p class="duration">2015</p>
+
 <p class="score">90% | School Topper in Mathematics (95/100)</p>
+
 </div>
+
+  
+
 <div class="education-card">
+
 <h3>Class 10th (CBSE)</h3>
+
 <p class="school">BDM International School</p>
+
 <p class="duration">2013</p>
+
 <p class="score">CGPA: 9.6</p>
+
 </div>
+
 </div>
+
 </section>
+
+  
 
 <section id="research">
+
 <h2 class="section-title">Research</h2>
-<div class="section-divider"></div>
+
 <div class="thesis-section">
+
 <h3>M.Tech Thesis: Variance-Adaptive Scaling for Transformer Attention Mechanisms</h3>
+
 <p class="duration" style="color: var(--accent); margin-bottom: 1.5rem; font-size: 1rem;">
+
 IIT Patna | 2024 - Present | Potential Future Publication
+
 </p>
+
 <h4 style="color: var(--text-primary); font-size: 1.3rem; margin-top: 2rem; margin-bottom: 1rem;">Abstract</h4>
+
 <p style="margin-bottom: 1.5rem;">
+
 Transformer-based models have achieved state-of-the-art performance across diverse natural language processing tasks. However, their attention mechanism exhibits a critical and underexplored failure mode in short-text classification—attention collapse, wherein attention weights converge to uniform distributions during training, resulting in semantic information loss and severe accuracy degradation.
+
 </p>
+
 <p style="margin-bottom: 1.5rem;">
+
 This phenomenon occurs when input feature variance falls below critical thresholds, destabilizing the softmax dynamics of the scaled dot-product attention. While extensively deployed in resource-constrained environments (mobile, IoT, edge devices), existing short-text models suffer from undiagnosed collapse, reducing efficiency and reliability without actionable mitigation strategies.
+
 </p>
+
 <h4 style="color: var(--text-primary); font-size: 1.3rem; margin-top: 2rem; margin-bottom: 1rem;">Methodology & Contribution</h4>
+
 <p style="margin-bottom: 1.5rem;">
+
 This thesis advances a unified diagnostic and mitigation paradigm rooted in optimization and signal stability theory. We first delineate collapse through entropy profiling across benchmarks, uncovering a direct covariance between input feature depletion and attention homogenization. Extending Bishop's variational framework for neural network stability to multi-head dynamics, we derive rigorous stability bounds that reveal how standard scaling worsens fragility under low-variance conditions.
+
 </p>
+
 <p style="margin-bottom: 1.5rem;">
-Motivated by these insights, we introduce <strong style="color: var(--text-primary);">Variance-Adaptive Scaling (VAS)</strong>: a lightweight, parameter-free adjustment that calibrates the attention temperature via batch-wise variance estimates, enforcing robust softmax equilibria without architectural overhead.
+
+Motivated by these insights, we introduce <strong>Variance-Adaptive Scaling (VAS)</strong>: a lightweight, parameter-free adjustment that calibrates the attention temperature via batch-wise variance estimates, enforcing robust softmax equilibria without architectural overhead.
+
 </p>
+
 <h4 style="color: var(--text-primary); font-size: 1.3rem; margin-top: 2rem; margin-bottom: 1rem;">Results & Impact</h4>
+
 <p style="margin-bottom: 1rem;">
+
 Empirical scrutiny on a compact 4-layer Transformer (256 hidden dimensions) affirms VAS's efficacy:
+
 </p>
+
 <ul style="list-style: none; padding-left: 0; margin-bottom: 1.5rem;">
+
 <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative; color: var(--text-secondary);">
+
 <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">✓</span>
-Attention entropy surged from 0.15 to 0.68—a <strong style="color: var(--text-primary);">377% restoration</strong>
+
+Attention entropy surged from 0.15 to 0.68—a <strong>377% restoration</strong>
+
 </li>
+
 <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative; color: var(--text-secondary);">
+
 <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">✓</span>
-SST-2 accuracy climbed <strong style="color: var(--text-primary);">18.3%</strong> by epoch 5
+
+SST-2 accuracy climbed <strong>18.3%</strong> by epoch 5
+
 </li>
+
 <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative; color: var(--text-secondary);">
+
 <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">✓</span>
-Convergence hastened <strong style="color: var(--text-primary);">43%</strong> via smoother loss landscapes (verified through Hessian-free approximations)
+
+Convergence hastened <strong>43%</strong> via smoother loss landscapes (verified through Hessian-free approximations)
+
 </li>
+
 <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative; color: var(--text-secondary);">
+
 <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">✓</span>
-On RTX 3050: <strong style="color: var(--text-primary);">&lt;1 MB footprint</strong> and trivial latency
+
+On RTX 3050: <strong>&lt;1 MB footprint</strong> and trivial latency
+
 </li>
+
 </ul>
+
 <p>
+
 Beyond rectification, our toolkit equips practitioners with entropy diagnostics for proactive collapse detection, fostering interpretable, resilient Transformers in production short-text pipelines. This research demonstrates viability for battery-constrained inference in edge computing environments.
+
 </p>
+
 </div>
+
 </section>
+
+  
 
 <section id="skills">
+
 <h2 class="section-title">Technical Skills</h2>
-<div class="section-divider"></div>
+
 <div class="skills-grid">
+
 <div class="skill-category">
+
 <h4>Languages</h4>
+
 <div class="skill-tags">
+
 <span class="skill-tag">JavaScript</span>
+
 <span class="skill-tag">Java</span>
+
 <span class="skill-tag">Go</span>
+
 <span class="skill-tag">Python</span>
+
 <span class="skill-tag">SQL</span>
+
 </div>
+
 </div>
+
+  
+
 <div class="skill-category">
+
 <h4>Frameworks</h4>
+
 <div class="skill-tags">
+
 <span class="skill-tag">Spring Cloud</span>
+
 <span class="skill-tag">Spring Reactive</span>
+
 <span class="skill-tag">React JS</span>
+
 <span class="skill-tag">Spring Cloud Stream</span>
+
 </div>
+
 </div>
+
+  
+
 <div class="skill-category">
+
 <h4>Cloud & DevOps</h4>
+
 <div class="skill-tags">
+
 <span class="skill-tag">Kubernetes</span>
+
 <span class="skill-tag">Docker</span>
+
 <span class="skill-tag">Jenkins</span>
+
 <span class="skill-tag">Spinnaker</span>
+
 </div>
+
 </div>
+
+  
+
 <div class="skill-category">
+
 <h4>Databases</h4>
+
 <div class="skill-tags">
+
 <span class="skill-tag">Oracle DB</span>
+
 <span class="skill-tag">MySQL</span>
+
 <span class="skill-tag">Tibco EMS</span>
+
 </div>
+
 </div>
+
+  
+
 <div class="skill-category">
+
 <h4>Monitoring & Testing</h4>
+
 <div class="skill-tags">
+
 <span class="skill-tag">New Relic</span>
+
 <span class="skill-tag">Grafana</span>
+
 <span class="skill-tag">JMeter</span>
+
 <span class="skill-tag">Postman</span>
+
 <span class="skill-tag">JConsole</span>
+
 </div>
+
 </div>
+
+  
+
 <div class="skill-category">
+
 <h4>AI/ML Research</h4>
+
 <div class="skill-tags">
+
 <span class="skill-tag">Transformers</span>
+
 <span class="skill-tag">NLP</span>
+
 <span class="skill-tag">Deep Learning</span>
+
 <span class="skill-tag">Optimization Theory</span>
+
 </div>
+
 </div>
+
 </div>
+
 </section>
+
+  
 
 <section id="awards">
+
 <h2 class="section-title">Awards & Recognition</h2>
-<div class="section-divider"></div>
+
 <div class="awards-list">
+
 <div class="award-item">
+
 <div class="award-icon">🏆</div>
+
 <div class="award-content">
+
 <h4>LLAMA Award Q1 2024</h4>
+
 <p>Best Employee - ServiceNow</p>
+
 </div>
+
 </div>
+
+  
+
 <div class="award-item">
+
 <div class="award-icon">⭐</div>
+
 <div class="award-content">
+
 <h4>Hi-Talent Recognition</h4>
+
 <p>Identified as Hi-Talent and awarded early promotion - TCS</p>
+
 </div>
+
 </div>
+
+  
+
 <div class="award-item">
+
 <div class="award-icon">🎯</div>
+
 <div class="award-content">
+
 <h4>On the Spot Award</h4>
+
 <p>Outstanding Performance (December 2020) - TCS</p>
+
 </div>
+
 </div>
+
+  
+
 <div class="award-item">
+
 <div class="award-icon">📧</div>
+
 <div class="award-content">
+
 <h4>Client Appreciation</h4>
+
 <p>Outstanding go-live phase performance</p>
+
 </div>
+
 </div>
+
+  
+
 <div class="award-item">
+
 <div class="award-icon">📐</div>
+
 <div class="award-content">
+
 <h4>School Topper</h4>
+
 <p>Mathematics - 12th AISSCE (95/100)</p>
+
 </div>
+
 </div>
+
 </div>
+
 </section>
+
+  
 
 <section id="contact">
+
 <h2 class="section-title">Get In Touch</h2>
-<div class="section-divider"></div>
+
 <div class="contact-info">
-<p style="margin-bottom: 1rem; color: var(--text-secondary);">I'm always open to discussing new opportunities, collaborations, or research ideas.</p>
+
+<p style="margin-bottom: 1rem;">I'm always open to discussing new opportunities, collaborations, or research ideas.</p>
+
 <p>📧 <a href="mailto:arnabhattacharya10@gmail.com">arnabhattacharya10@gmail.com</a></p>
-<p style="margin-top: 0.5rem;">📱 <a href="tel:+916289402839">+91 6289402839</a></p>
+
+<p>📱 <a href="tel:+916289402839">+91 6289402839</a></p>
+
 </div>
+
 </section>
 
+  
+
 <footer>
+
 <p>&copy; 2025 Arnab Bhattacharya. All rights reserved.</p>
+
 </footer>
 
+  
+
 <script>
+
+// Theme Toggle
+
 function toggleTheme() {
+
 const html = document.documentElement;
+
 const currentTheme = html.getAttribute('data-theme');
+
 const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
 html.setAttribute('data-theme', newTheme);
+
 localStorage.setItem('theme', newTheme);
+
 }
 
+  
+
+// Load saved theme
+
 const savedTheme = localStorage.getItem('theme') || 'dark';
+
 document.documentElement.setAttribute('data-theme', savedTheme);
 
+  
+
+// Smooth Scroll
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
 anchor.addEventListener('click', function (e) {
+
 e.preventDefault();
+
 const target = document.querySelector(this.getAttribute('href'));
-if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
+
+if (target) {
+
+target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+}
+
 });
 
-const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' };
-const observer = new IntersectionObserver((entries) => {
-entries.forEach(entry => {
-if (entry.isIntersecting) entry.target.classList.add('visible');
 });
+
+  
+
+// Scroll Animations
+
+const observerOptions = {
+
+threshold: 0.1,
+
+rootMargin: '0px 0px -100px 0px'
+
+};
+
+  
+
+const observer = new IntersectionObserver((entries) => {
+
+entries.forEach(entry => {
+
+if (entry.isIntersecting) {
+
+entry.target.classList.add('visible');
+
+}
+
+});
+
 }, observerOptions);
 
-document.querySelectorAll('section').forEach(section => observer.observe(section));
+  
+
+document.querySelectorAll('section').forEach(section => {
+
+observer.observe(section);
+
+});
+
+  
+
+// Timeline items animation
 
 const timelineItems = document.querySelectorAll('.timeline-item');
-const timelineObserver = new IntersectionObserver((entries) => {
-entries.forEach(entry => {
-if (entry.isIntersecting) entry.target.classList.add('visible');
-});
-}, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
 
-timelineItems.forEach(item => timelineObserver.observe(item));
+const timelineObserver = new IntersectionObserver((entries) => {
+
+entries.forEach(entry => {
+
+if (entry.isIntersecting) {
+
+entry.target.classList.add('visible');
+
+}
+
+});
+
+}, {
+
+threshold: 0.2,
+
+rootMargin: '0px 0px -50px 0px'
+
+});
+
+  
+
+timelineItems.forEach(item => {
+
+timelineObserver.observe(item);
+
+});
+
+  
+
+// Navbar scroll effect
 
 let lastScroll = 0;
+
 window.addEventListener('scroll', () => {
+
 const navbar = document.getElementById('navbar');
+
 const currentScroll = window.pageYOffset;
-navbar.style.padding = currentScroll > 100 ? '0.5rem 0' : '1rem 0';
+
+if (currentScroll > 100) {
+
+navbar.style.padding = '0.5rem 0';
+
+} else {
+
+navbar.style.padding = '1rem 0';
+
+}
+
 lastScroll = currentScroll;
+
 });
+
 </script>
+
 </body>
+
 </html>
